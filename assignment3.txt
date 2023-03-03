@@ -1,0 +1,164 @@
+Q1.	Write a program containing a possible exception. Use a try block to throw it and a catch block
+	to handle it promptly.
+Ans.	package assignment3;
+	import java.util.Scanner;
+	public class exception {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("enter positive integer: ");
+		int num=sc.nextInt();
+		
+		try {
+			if (num<=0) {
+				throw new Exception("the no. must be positive");
+			
+		}
+			System.out.println("you are doing great");
+			
+	}
+		catch(Exception e) {
+			System.out.println("ERROR: " + e.getMessage());
+		}
+	}
+}
+Input1: enter positive integer: -5
+Output: ERROR: the no. must be positive
+
+Input2: enter positive integer: 5
+Output:	you are doing great
+
+Q2.	Write a program that illustrates the application of multiple catch statements.
+Ans.	package assignment3;
+
+	import java.util.Scanner;
+
+	public class multiple_catch {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("enter a no.: ");
+		try {
+			int num=sc.nextInt();
+			int result= 100/num;
+			System.out.println("Result: "+result);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("Error: "+ e.getMessage());
+			System.out.println("not divisible ");
+		}
+		catch(Exception e) {
+			System.out.println("Something went wrong.");
+			System.out.println("completed");
+		}
+	}
+}
+
+Input1:	enter a no.: dyg
+Output:	Something went wrong.
+	completed
+Input2:	enter a no.: 0
+Output:	Error: / by zero
+	not divisible
+
+	
+Q3.	Write a program that demonstrates how certain exception types are not allowed to be thrown.
+Ans.	package assignment3;
+
+	public class Exception_not_allowed extends Exception{
+	public Exception_not_allowed (String m) {
+		super(m);
+	}
+	public static int add(int a, int b) throws Exception{
+		if(a==b) {
+			throw new Exception_not_allowed("not allowed");}
+		else{
+				return(a+b);
+			}
+	}
+	public static void main(String args[]) {
+		try {
+			System.out.println(add(10,10));
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+Output:	assignment3.Exception_not_allowed: not allowed
+
+
+Q4.	Write a program to demonstrate the concept of re-throwing an exception.
+Ans.	package assignment3;
+
+	public class re_throwing {
+
+	public static void main(String[] args) {
+		
+		try {
+			int result= 100/0;
+			System.out.println("Result: "+result);
+			}
+		catch(ArithmeticException e) {
+			System.out.println("Error: "+ e.getMessage());
+			System.out.println("not divisible ");
+		}
+		divide(10,0);
+	
+	}
+	public static int divide(int num1, int num2) throws ArithmeticException {
+		try {
+			return(num1/num2);
+			
+		}
+		catch(ArithmeticException e) {
+			System.out.println("something went wrong "+ e.getMessage());
+			System.out.println("not defined ");
+			
+		}
+		return(0);
+	}
+}
+
+Output:	Error: / by zero
+	not divisible 
+	something went wrong / by zero
+	not defined 
+
+Q5. 	You will be given two integers and as input, you have to compute x/y. If x and y are not 32 bit
+	signed integers or if y is zero, exception will occur and you have to report it. Read sample
+	Input/Output to know what to report in case of exceptions.
+Ans.	package assignment3;
+
+	import java.util.InputMismatchException;
+	import java.util.Scanner;
+
+	public class multiple_catch {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("enter two nos.: ");
+		try {
+			int num1=sc.nextInt();
+			int num2=sc.nextInt();
+			int result= num1/num2;
+			System.out.println("Result: "+result);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("Error: "+ e.getMessage());
+			System.out.println("not divisible ");
+		}
+		catch(InputMismatchException e) {
+			System.out.println(e);
+		}
+		catch(Exception e) {
+			System.out.println("Something went wrong.");
+			System.out.println("completed");
+		}
+	}
+}
+Input:	enter two nos.: 645
+			xcdwgkh
+OPutput:java.util.InputMismatchException
